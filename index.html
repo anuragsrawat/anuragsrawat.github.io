@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anurag Singh Rawat — Full Stack &amp; AI Developer</title>
+<meta name="description" content="Anurag Singh Rawat — Computer Science (Full Stack AI) student and developer. Projects in AI agents, LLMs, full-stack web, and machine learning.">
+<style>
+  :root {
+    --bg: #f5f6f9; --surface: #ffffff; --surface-2: #eef1f6;
+    --ink: #131a26; --ink-soft: #3a4658; --muted: #626e80;
+    --line: #e4e8ef; --accent: #2f6fed; --accent-soft: #e7effe;
+    --on-accent: #ffffff; --ring: #2f6fed;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0b0f16; --surface: #121924; --surface-2: #18212e;
+      --ink: #e9edf4; --ink-soft: #b7c1d0; --muted: #8592a4;
+      --line: #212b3a; --accent: #6597ff; --accent-soft: #16233c;
+      --on-accent: #0b0f16; --ring: #6597ff;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #f5f6f9; --surface: #ffffff; --surface-2: #eef1f6;
+    --ink: #131a26; --ink-soft: #3a4658; --muted: #626e80;
+    --line: #e4e8ef; --accent: #2f6fed; --accent-soft: #e7effe;
+    --on-accent: #ffffff; --ring: #2f6fed;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b0f16; --surface: #121924; --surface-2: #18212e;
+    --ink: #e9edf4; --ink-soft: #b7c1d0; --muted: #8592a4;
+    --line: #212b3a; --accent: #6597ff; --accent-soft: #16233c;
+    --on-accent: #0b0f16; --ring: #6597ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
+  body {
+    background: var(--bg); color: var(--ink); font-family: var(--sans);
+    line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; border-radius: 4px; }
+
+  .eyebrow {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--accent); font-weight: 600;
+  }
+
+  /* ---------- Top nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 10; backdrop-filter: blur(10px);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 58px; }
+  .logo { font-weight: 800; letter-spacing: -.3px; font-size: 16px; }
+  .logo b { color: var(--accent); }
+  .nav-links { display: flex; gap: 22px; align-items: center; }
+  .nav-links a { font-size: 14px; color: var(--ink-soft); font-weight: 500; }
+  .nav-links a:hover { color: var(--accent); }
+  @media (max-width: 620px) { .nav-links a:not(.theme-btn) { display: none; } }
+  .theme-btn {
+    background: var(--surface-2); border: 1px solid var(--line); color: var(--ink-soft);
+    width: 34px; height: 34px; border-radius: 9px; cursor: pointer; font-size: 15px;
+    display: grid; place-items: center;
+  }
+
+  /* ---------- Hero ---------- */
+  header.hero { padding: 76px 0 56px; }
+  .status {
+    display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono);
+    font-size: 12.5px; color: var(--muted); margin-bottom: 20px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 3px color-mix(in srgb, #22c55e 25%, transparent); animation: pulse 2.4s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .5; } }
+  h1 { font-size: clamp(38px, 7vw, 60px); line-height: 1.02; letter-spacing: -1.6px; font-weight: 800; }
+  h1 .grad { color: var(--accent); }
+  .tagline { font-size: clamp(18px, 2.6vw, 22px); color: var(--ink-soft); margin-top: 18px; max-width: 40ch; font-weight: 500; }
+  .intro { color: var(--muted); margin-top: 18px; max-width: 56ch; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px;
+    border-radius: 11px; font-weight: 600; font-size: 14.5px; border: 1px solid var(--line);
+    transition: transform .12s ease, background .15s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+  .btn-ghost { background: var(--surface); color: var(--ink); }
+
+  /* ---------- Sections ---------- */
+  section { padding: 44px 0; border-top: 1px solid var(--line); }
+  .sec-head { margin-bottom: 26px; }
+  .sec-head h2 { font-size: 26px; letter-spacing: -.6px; margin-top: 6px; font-weight: 800; }
+
+  /* ---------- Projects ---------- */
+  .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 680px) { .projects { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+    padding: 22px; display: flex; flex-direction: column; transition: border-color .15s, transform .12s;
+  }
+  .card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .card.feat { grid-column: 1 / -1; border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); }
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .card h3 { font-size: 18.5px; letter-spacing: -.3px; }
+  .card .when { font-family: var(--mono); font-size: 11.5px; color: var(--muted); white-space: nowrap; }
+  .card p { color: var(--ink-soft); font-size: 14.5px; margin: 10px 0 14px; }
+  .star { font-size: 11px; font-family: var(--mono); color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 999px; font-weight: 700; }
+  .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; }
+  .tag { font-family: var(--mono); font-size: 11px; padding: 3px 9px; border-radius: 7px; background: var(--surface-2); color: var(--ink-soft); }
+  .links { display: flex; gap: 14px; margin-top: 14px; }
+  .links a { font-size: 13.5px; font-weight: 600; color: var(--accent); display: inline-flex; align-items: center; gap: 5px; }
+  .links a:hover { text-decoration: underline; }
+
+  /* ---------- Experience ---------- */
+  .exp { display: flex; flex-direction: column; gap: 4px; }
+  .job { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .job:last-child { border-bottom: 0; }
+  .job .role { font-weight: 700; font-size: 16px; }
+  .job .co { color: var(--accent); }
+  .job .date { font-family: var(--mono); font-size: 12px; color: var(--muted); text-align: right; white-space: nowrap; }
+  .job .desc { grid-column: 1 / -1; color: var(--muted); font-size: 14px; margin-top: 2px; }
+
+  /* ---------- Skills ---------- */
+  .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px 40px; }
+  @media (max-width: 620px) { .skills { grid-template-columns: 1fr; } }
+  .skill-group .label { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .chip { font-size: 13px; padding: 5px 12px; border-radius: 8px; background: var(--surface); border: 1px solid var(--line); color: var(--ink-soft); }
+
+  /* ---------- Footer ---------- */
+  footer { padding: 50px 0 60px; border-top: 1px solid var(--line); text-align: center; }
+  footer h2 { font-size: 28px; letter-spacing: -.5px; margin-bottom: 10px; font-weight: 800; }
+  footer p { color: var(--muted); max-width: 46ch; margin: 0 auto 22px; }
+  .socials { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .foot-note { margin-top: 34px; font-size: 12.5px; color: var(--muted); font-family: var(--mono); }
+  .edu-line { color: var(--ink-soft); }
+  .edu-line b { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Anurag<b>.</b></div>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-btn" id="tt" aria-label="Toggle dark mode">◐</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="status"><span class="dot"></span> Open to Full-Stack &amp; AI roles · 2026</div>
+    <h1>Anurag Singh<br><span class="grad">Rawat</span></h1>
+    <p class="tagline">Computer Science (Full Stack AI) developer building AI agents and full-stack products.</p>
+    <p class="intro">Final-year B.Tech student at UPES Dehradun. I build LLM-powered agents, REST APIs, and real-time web apps — from tool-calling AI assistants to production backends.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#projects">View Projects →</a>
+      <a class="btn btn-ghost" href="https://github.com/anuragsrawat" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/anurag-rawat-161574244" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="mailto:anurag2004rawat@gmail.com">Email</a>
+    </div>
+  </div>
+</header>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Selected Work</div>
+      <h2>Projects</h2>
+    </div>
+    <div class="projects">
+
+      <article class="card feat">
+        <div class="card-top">
+          <h3>AI Email Processing Agent <span class="star">★ Featured</span></h3>
+          <span class="when">2026</span>
+        </div>
+        <p>An LLM-powered agent that automatically categorizes, prioritizes, summarizes, and suggests actions for emails, and extracts meeting details. Features real <b>LLM tool calling</b>, <b>RAG semantic search</b> over emails, and a <b>conversational agent with memory</b> — backed by SQLite, exposed via a FastAPI REST API and web dashboard, with Gmail integration and a Pytest suite.</p>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Google Gemini</span>
+          <span class="tag">Tool Calling</span><span class="tag">RAG</span><span class="tag">SQLAlchemy</span>
+          <span class="tag">Docker</span><span class="tag">Pytest</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/anuragsrawat/ai-email-agent" target="_blank" rel="noopener">↗ Source Code</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <h3>Chatsphere</h3>
+          <span class="when">2025</span>
+        </div>
+        <p>Real-time chat web app with secure authentication, private/group messaging, and live user interactions using Socket.io for bi-directional communication.</p>
+        <div class="tags">
+          <span class="tag">Node.js</span><span class="tag">Socket.io</span><span class="tag">React</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <h3>Smart Attendance System</h3>
+          <span class="when">2025</span>
+        </div>
+        <p>Secure, location-aware attendance system using geolocation and pattern matching, with role-based workflows for teachers and students and real-time fraud prevention.</p>
+        <div class="tags">
+          <span class="tag">JavaScript</span><span class="tag">Geolocation</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/anuragsrawat/smart-attendence-management" target="_blank" rel="noopener">↗ Source Code</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <h3>Insure AI</h3>
+          <span class="when">2024</span>
+        </div>
+        <p>ML-based insurance premium estimator built with Scikit-learn on user risk data (age, BMI, smoking). Deployed as a Streamlit app with Linear, Ridge, and XGBoost models for transparent predictions.</p>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">Streamlit</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Where I've Worked</div>
+      <h2>Experience</h2>
+    </div>
+    <div class="exp">
+      <div class="job">
+        <div class="role">Software Engineer Intern · <span class="co">Samplify</span></div>
+        <div class="date">Mar 2025 – Present</div>
+        <div class="desc">Built and maintained backend APIs with Node.js, Express &amp; MySQL; debugged production workflows and implemented monitoring with Prometheus, Grafana &amp; Redis.</div>
+      </div>
+      <div class="job">
+        <div class="role">Developer · <span class="co">Xebia (Chatsphere)</span></div>
+        <div class="date">Jul 2025 – Aug 2025</div>
+        <div class="desc">Developed a real-time chat application with secure auth and group messaging using Socket.io.</div>
+      </div>
+      <div class="job">
+        <div class="role">Web Developer · <span class="co">The Franchise Insiider</span></div>
+        <div class="date">Jan 2025 – Mar 2025</div>
+        <div class="desc">Enhanced functionality, responsiveness, and SEO; improved UI/UX and fixed performance issues.</div>
+      </div>
+      <div class="job">
+        <div class="role">Backend Developer · <span class="co">Evon Technologies</span></div>
+        <div class="date">Jun 2024 – Jul 2024</div>
+        <div class="desc">Built a secure user login system and optimized backend performance.</div>
+      </div>
+      <div class="job">
+        <div class="role">Intern · <span class="co">ONGC</span></div>
+        <div class="date">Jun 2024 – Aug 2024</div>
+        <div class="desc">Automated image extraction and categorization from PDFs using Python; worked with large-scale data systems.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Toolbox</div>
+      <h2>Skills</h2>
+    </div>
+    <div class="skills">
+      <div class="skill-group">
+        <div class="label">Languages</div>
+        <div class="chips"><span class="chip">Python</span><span class="chip">Java</span><span class="chip">C</span><span class="chip">JavaScript</span></div>
+      </div>
+      <div class="skill-group">
+        <div class="label">AI / ML</div>
+        <div class="chips"><span class="chip">LLMs</span><span class="chip">Tool Calling</span><span class="chip">RAG</span><span class="chip">Scikit-learn</span></div>
+      </div>
+      <div class="skill-group">
+        <div class="label">Web &amp; Frameworks</div>
+        <div class="chips"><span class="chip">FastAPI</span><span class="chip">React.js</span><span class="chip">Node.js</span><span class="chip">Express.js</span><span class="chip">HTML/CSS</span></div>
+      </div>
+      <div class="skill-group">
+        <div class="label">Data &amp; Tools</div>
+        <div class="chips"><span class="chip">MySQL</span><span class="chip">MongoDB</span><span class="chip">SQLite</span><span class="chip">Docker</span><span class="chip">Git</span></div>
+      </div>
+    </div>
+    <div class="job" style="border-top:1px solid var(--line); margin-top:28px; border-bottom:0;">
+      <div class="role">B.Tech, Computer Science — Full Stack AI</div>
+      <div class="date">2022 – 2026</div>
+      <div class="desc edu-line"><b>UPES Dehradun</b> · CGPA 7.88 / 10 &nbsp;·&nbsp; AWS Certified Cloud Practitioner · 100+ LeetCode solved</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="eyebrow">Get in touch</div>
+    <h2>Let's build something.</h2>
+    <p>Open to Full-Stack and AI internship / new-grad opportunities. The fastest way to reach me is email.</p>
+    <div class="socials">
+      <a class="btn btn-primary" href="mailto:anurag2004rawat@gmail.com">✉ anurag2004rawat@gmail.com</a>
+      <a class="btn btn-ghost" href="https://github.com/anuragsrawat" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/anurag-rawat-161574244" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="foot-note">Designed &amp; built by Anurag Singh Rawat · © 2026</div>
+  </div>
+</footer>
+
+<script>
+  const root = document.documentElement;
+  const tt = document.getElementById('tt');
+  tt.addEventListener('click', () => {
+    const cur = root.getAttribute('data-theme');
+    const isDark = cur ? cur === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  });
+</script>
+</body>
+</html>
